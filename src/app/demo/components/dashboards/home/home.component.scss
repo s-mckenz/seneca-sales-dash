@@ -1,156 +1,125 @@
-.dashboard {
-    display: flex;
-    flex-direction: column;
-    // gap: 20px;
-    // padding: 20px;
-  }
+// =========================
+// Design Tokens / Variables
+// =========================
+$primary-color: #4e46dc;
+$secondary-color: #333;
+$text-color: #333;
+$background-color: #fff;
+$notification-bg: #f9f9f9;
+$border-color: #ddd;
+$border-radius: 8px;
+$box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+$spacing: 16px;
 
-  .home-topbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .dashboard-section {
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    padding: 15px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .section-title {
-    margin: 0 0 10px;
-    font-size: 18px;
-    color: #333;
-  }
-  
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 15px;
-  }
-  
-  .card {
-    background: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    text-align: center;
-  }
-  
-  .card-content h3 {
-    margin: 0;
-    font-size: 16px;
-    color: #555;
-  }
-  
-  .card-content p {
-    margin: 10px 0 0;
-    color: #888;
-  }
-  
-  .fullscreen-button {
-    position: absolute;
-    top: 10px; 
-    right: 10px;
-    z-index: 1000; 
-  }
-
-  .site-selector {
-    position: absolute;
-    top: 10px; 
-    left: 10px; 
-    z-index: 1000; 
+// =========================
+// Global Container Styles
+// =========================
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: $spacing;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
-.weather {
-  position: absolute;
-  bottom: 10px; 
-  right: 10px; 
-  z-index: 1000; 
-}
-
-  .placeholder-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); 
-    grid-template-rows: repeat(2, 1fr);
-    gap: 10px;
-    max-height: 300px;
-    min-height: 100px; 
-    width: 100%;
-}
-
-.number-card {
-  //background-color: lightgray; //For Testing
-  height: 100%;
-  flex: 1; 
-}
-
-.weather-placeholder-container {
-  height: 100%; 
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-}
-
-.weather-container {
-  display: flex; 
-  justify-content: center !important;
-  align-items: center !important;
-  height: 100%; 
-  width: 100%; 
-}
-
-.grid {
+// =========================
+// Top Bar
+// =========================
+.home-topbar {
   display: flex;
-  flex-wrap: wrap;
-  gap: 1rem; /* Add consistent spacing between grid items */
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing;
+  
+  a {
+    color: $primary-color;
+    font-weight: bold;
+    text-decoration: none;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
+
+// =========================
+// Card Container (Main Content)
+// =========================
 .p-card {
-  flex: 1 1 calc(33.33% - 1rem); /* Adjust for three cards per row */
+  background-color: $background-color;
+  padding: $spacing;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  
+  // Space between banner and other content if needed
+  app-banner {
+    margin-bottom: $spacing;
+  }
 }
 
-
-.flex-container {
-  display: flex;
-  gap: 10px; /* Space between flex items */
-  height: 120px; /* Set height for consistency */
-}
-
-.flex-item {
-  flex: 1; /* Equal width for side-by-side items */
-}
-
-/* Center the container with flexbox */
-.center-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Centers items horizontally */
-  justify-content: center; /* Centers items vertically */
-  width: 100%;
-  margin-top: 1rem; /* Adjust spacing */
-}
-
-/* Add spacing between elements */
+// =========================
+// Selection & Export Controls
+// =========================
 .site-selection-container,
 .date-selection-container,
 .export-button-container {
   display: flex;
-  justify-content: center; /* Centers horizontally */
-  width: 100%; /* Ensure full-width */
+  justify-content: center;
+  width: 100%;
+  margin-bottom: $spacing;
 }
 
 .date-selection-container {
-  gap: 1rem; /* Add spacing between date inputs */
+  gap: $spacing / 2;
+  flex-wrap: wrap;
 }
 
 .export-button-container {
-  margin-top: 1rem; /* Space between date range and button */
+  margin-top: $spacing;
 }
 
-/* Sidebar Close Button */
-.p-sidebar .p-button-text {
-  color: #333;
-  font-size: 1.2rem;
+// =========================
+// Notifications
+// =========================
+.notification-message {
+  background-color: $notification-bg;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  padding: $spacing / 2;
+  text-align: center;
+  color: $text-color;
+  width: 100%;
+  margin-bottom: $spacing;
+}
+
+// =========================
+// Sidebar (Selected Sites)
+// =========================
+.p-sidebar {
+  // Sidebar header
+  h3 {
+    border-bottom: 1px solid $border-color;
+    padding-bottom: $spacing / 2;
+    margin-bottom: $spacing;
+    font-size: 1.25rem;
+    color: $secondary-color;
+  }
+  
+  // Sidebar site list items
+  .selected-sites-list {
+    .site-item {
+      margin-bottom: $spacing / 2;
+      
+      p-button {
+        width: 100%;
+      }
+    }
+  }
+  
+  // Sidebar Close Button Styling
+  .p-button-text {
+    color: $secondary-color;
+    font-size: 1.2rem;
+  }
 }

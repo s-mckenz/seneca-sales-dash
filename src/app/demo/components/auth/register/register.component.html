@@ -23,11 +23,6 @@
                 <p-password id="password" placeholder="Password" styleClass="w-full" [inputStyle]="{paddingLeft: '2.5rem'}" inputStyleClass="w-full md:w-25rem" [toggleMask]="true" [(ngModel)]="password"></p-password>
             </span>
 
-            <span class="p-input-icon-left w-full mb-4" [hidden] = "isLicenseKeyHidden">
-                <i class="pi pi-key"></i>
-                <input id="licenseKey" type="text" pInputText class="w-full md:w-25rem" placeholder="License Key" [(ngModel)]="licenseKey">
-            </span>
-
             <button pButton pRipple label="Sign Up" class="w-full mt-4 mb-4" (click)="onRegister()"></button>
 
             <span class="font-medium text-600">

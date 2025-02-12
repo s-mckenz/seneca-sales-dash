@@ -16,6 +16,7 @@ export class RegisterComponent {
     password: string = '';
     email: string = '';
     licenseKey: string = ''; 
+    isLicenseKeyHidden: boolean = true;
 
     constructor(private layoutService: LayoutService, private router: Router) {}
 

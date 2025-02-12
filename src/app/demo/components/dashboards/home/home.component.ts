@@ -183,10 +183,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     if (!this.selectedSiteIds) {
       this.selectedSiteIds = [];
     }
-    this.showMessage(
-      `Selected Sites: ${JSON.stringify(this.selectedSites, null, 2)}`,
-      'info'
-    );
   }
 
   onMultiselectCloseup() {

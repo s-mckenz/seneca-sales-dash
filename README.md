@@ -53,8 +53,8 @@ The app is built using Angular and PrimeNG components and is deployed using AWS 
 
 ### Clone the Repository:
 ```sh
-git clone https://github.com/yourusername/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/mwarnermatt-git/apollo-ng-pancheros-sales.git
+cd apollo-ng-pancheros-sales
 ```
 
 ### Install Dependencies:
@@ -76,7 +76,7 @@ To create an optimized production build of the application:
 ```sh
 ng build --prod
 ```
-The compiled files will be placed in the `dist/your-app-name` directory.
+The compiled files will be placed in the `dist/apollo-ng-pancheros-sales` directory.
 
 ## Deployment with AWS Amplify
 
@@ -104,14 +104,13 @@ frontend:
       commands:
         - npm run build --prod
   artifacts:
-    baseDirectory: dist/your-app-name
+    baseDirectory: dist/apollo-ng-pancheros-sales
     files:
       - '**/*'
   cache:
     paths:
       - node_modules/**/*
 ```
-Replace `your-app-name` with the correct output directory of your Angular build.
 
 ### Deploy:
 - Save your configuration and click **Save and Deploy**.
@@ -134,8 +133,8 @@ In your `src/environments/environment.ts` file, add your Cognito settings:
 export const environment = {
   production: false,
   cognito: {
-    userPoolId: '<your-user-pool-id>',
-    userPoolWebClientId: '<your-app-client-id>',
+    userPoolId: 'us-east-1_0WHyPNNRN',
+    userPoolWebClientId: '5a1ps41nb3n59uv611lljf8dp2',
     region: 'us-east-1'
   }
 };

@@ -1,0 +1,57 @@
+<div class="grid">
+    <div class="card">
+      <div class="flex flex-column md:flex-row md:align-items-start md:justify-content-between mb-3">
+        <div class="text-900 text-xl font-semibold mb-3 md:mb-0">RDS Products Table Data</div>
+        <div class="inline-flex align-items-center">
+          <span class="p-input-icon-left flex-auto">
+            <i class="pi pi-search"></i>
+            <input
+              pInputText
+              type="text"
+              (input)="onGlobalFilter(dt, $event)"
+              placeholder="Search"
+              class="w-full"
+              style="border-radius: 2rem"
+            />
+          </span>
+          <button
+            pButton
+            pRipple
+            icon="pi pi-upload"
+            class="p-button-rounded mx-3"
+            (click)="dt.exportCSV()"
+          ></button>
+        </div>
+      </div>
+      <p-table
+        #dt
+        [value]="products"
+        [columns]="cols"
+        [paginator]="true"
+        [rows]="20"
+        responsiveLayout="scroll"
+        [responsive]="true"
+        [globalFilterFields]="globalFilterFields"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th
+              *ngFor="let col of cols"
+              pSortableColumn="{{ col.field }}"
+              style="min-width:10rem"
+              class="white-space-nowrap"
+            >
+              {{ col.header }}
+              <p-sortIcon field="{{ col.field }}"></p-sortIcon>
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+          <tr>
+            <td *ngFor="let col of cols">{{ product[col.field] }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+  

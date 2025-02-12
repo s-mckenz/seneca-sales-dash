@@ -1,0 +1,78 @@
+{
+	"data": {
+	  "rds_cloud_Products": [
+		{
+		  "category": null,
+		  "id": 5,
+		  "isActive": true,
+		  "name": "RDS Connect",
+		  "showInDashboard": false,
+		  "showInRegistration": false,
+		  "showInSupportTool": false
+		},
+		{
+		  "category": null,
+		  "id": 6,
+		  "isActive": false,
+		  "name": "Kitchen Printer",
+		  "showInDashboard": false,
+		  "showInRegistration": false,
+		  "showInSupportTool": false
+		},
+		{
+		  "category": null,
+		  "id": 7,
+		  "isActive": false,
+		  "name": "Lab Printer",
+		  "showInDashboard": false,
+		  "showInRegistration": false,
+		  "showInSupportTool": false
+		},
+		{
+		  "category": null,
+		  "id": 9,
+		  "isActive": true,
+		  "name": "RPOS Agent",
+		  "showInDashboard": true,
+		  "showInRegistration": false,
+		  "showInSupportTool": false
+		},
+		{
+		  "category": null,
+		  "id": 8,
+		  "isActive": false,
+		  "name": "Print Proxy",
+		  "showInDashboard": true,
+		  "showInRegistration": false,
+		  "showInSupportTool": false
+		},
+		{
+		  "category": null,
+		  "id": 12,
+		  "isActive": false,
+		  "name": "Chrome Launcher",
+		  "showInDashboard": true,
+		  "showInRegistration": false,
+		  "showInSupportTool": false
+		},
+		{
+		  "category": null,
+		  "id": 1,
+		  "isActive": false,
+		  "name": "OCB",
+		  "showInDashboard": true,
+		  "showInRegistration": true,
+		  "showInSupportTool": false
+		},
+		{
+		  "category": null,
+		  "id": 11,
+		  "isActive": false,
+		  "name": "RDSRPOSAgent",
+		  "showInDashboard": true,
+		  "showInRegistration": false,
+		  "showInSupportTool": false
+		}
+	  ]
+	}
+  }

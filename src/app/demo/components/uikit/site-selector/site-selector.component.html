@@ -1,0 +1,10 @@
+<p-dropdown 
+  [(ngModel)]="selectedSite" 
+  [options]="sites" 
+  optionLabel="name" 
+  [disabled]="loading" 
+  placeholder="Select a site..."
+  (onChange)="onSiteSelected($event.value)"
+  id="siteSelector"
+  [style]="{'width': '500px'}">
+</p-dropdown>

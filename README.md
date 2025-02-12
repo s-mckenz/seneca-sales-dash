@@ -1,56 +1,136 @@
-# Apollo Angular Template with AWS Cognito
+# Pancheros Sales Portal
 
-## Overview
-This repository serves as a base template for an Angular application using the [Apollo Angular Template](https://www.primefaces.org/apollo-ng) integrated with AWS Cognito for authentication.
+Pancheros Sales Portal is an Angular-based application that allows users to:
+
+- **Select Sites**: Choose one or more sites using a dynamic multi-select dropdown (powered by PrimeNG).
+- **Set Date Ranges**: Pick start and end dates using date pickers.
+- **Export Sales Data**: Trigger an export that sends sales data (via an API request) to the configured email address.
+- **View Selections**: See a live, responsive sidebar summary of the selected sites.
+- **Authenticate via AWS Cognito**: Leverage AWS Cognito for user authentication, allowing secure user registration and login.
+
+The app is built using Angular and PrimeNG components and is deployed using AWS Amplify from the GitHub master branch.
+
+## Table of Contents
+
+- [Features](#features)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Development](#development)
+- [Production Build](#production-build)
+- [Deployment with AWS Amplify](#deployment-with-aws-amplify)
+- [AWS Cognito Authentication](#aws-cognito-authentication)
+- [Usage](#usage)
+
+## Features
+
+### Multi-Select Site Dropdown
+- Uses PrimeNG's `p-multiSelect` to allow users to select one or more sales sites.
+
+### Date Range Selection
+- Uses `p-calendar` to pick start and end dates.
+
+### Sales Export Button
+- Triggers a POST request to export sales orders. The request payload dynamically handles whether all sites or only a subset are selected.
+
+### Responsive Sidebar
+- Displays the list of selected sites and can be toggled open/closed.
+
+### AWS Amplify Deployment
+- Automatically deploys from the GitHub master branch using AWS Amplify's continuous deployment.
+
+### AWS Cognito Authentication
+- Uses AWS Cognito to handle user registration, login, and authentication seamlessly within the Angular app.
 
 ## Prerequisites
-Before setting up the project, ensure you have the following installed:
-- Node.js (Latest LTS version recommended)
-- Angular CLI
-- AWS CLI (For managing Cognito resources)
 
-## Project Setup
-1. Clone the repository and navigate to the project directory:
-   
-   ```sh
-   git clone <repository-url>
-   cd <repository-directory>
-   ```
+- Node.js (v12 or later)
+- Angular CLI (install globally with `npm install -g @angular/cli`)
+- Git
+- An AWS Amplify account (for deployment)
+- An AWS Cognito setup for authentication
 
-2. Install dependencies:
-   
-   ```sh
-   npm install
-   ```
+## Installation
 
-3. Start the development server:
-   
-   ```sh
-   ng serve
-   ```
-
-## AWS Cognito Setup
-To use AWS Cognito for authentication, follow these steps:
-
-### 1. Create a User Pool
-1. Go to the [AWS Cognito Console](https://console.aws.amazon.com/cognito/).
-2. Click **Create user pool**.
-3. Configure the **Sign-in method** (e.g., email, username).
-4. Set up **Password policies** and MFA (optional).
-5. Create an **App client** without a secret.
-6. Save the **User Pool ID** and **App Client ID** for later use.
-
-### 2. Add a Custom Attribute
-AWS Cognito does not allow custom attributes to be added from the web console after pool creation. Use the AWS CLI:
-
+### Clone the Repository:
 ```sh
-aws cognito-idp add-custom-attributes --user-pool-id <your-user-pool-id> --custom-attributes Name=license_key,AttributeDataType=String,Mutable=true
+git clone https://github.com/yourusername/your-repo-name.git
+cd your-repo-name
 ```
 
-### 3. Update Authentication Flow
-1. Configure the authentication settings in `src/environments/environment.ts`:
+### Install Dependencies:
+```sh
+npm install
+```
 
-```typescript
+## Development
+
+To run the application locally in development mode, use:
+```sh
+ng serve
+```
+Then, open your browser and navigate to [http://localhost:4200](http://localhost:4200).
+
+## Production Build
+
+To create an optimized production build of the application:
+```sh
+ng build --prod
+```
+The compiled files will be placed in the `dist/your-app-name` directory.
+
+## Deployment with AWS Amplify
+
+### Log In to AWS Amplify Console:
+- Navigate to [AWS Amplify Console](https://console.aws.amazon.com/amplify/home) and sign in.
+
+### Create a New App:
+- Click on **New app** and then **Host web app**.
+
+### Connect to GitHub:
+- Choose GitHub as your repository provider.
+- Authorize AWS Amplify to access your GitHub account.
+- Select your repository and choose the master branch.
+
+### Configure Build Settings:
+AWS Amplify should auto-detect that this is an Angular project. If needed, you can create an `amplify.yml` file in the root of your repository with the following content:
+```yaml
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm ci
+    build:
+      commands:
+        - npm run build --prod
+  artifacts:
+    baseDirectory: dist/your-app-name
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
+```
+Replace `your-app-name` with the correct output directory of your Angular build.
+
+### Deploy:
+- Save your configuration and click **Save and Deploy**.
+- AWS Amplify will automatically build and deploy your application.
+- Once deployed, you’ll receive a live URL where your app is hosted.
+
+### Environment Variables (Optional):
+If your app requires any environment variables (e.g., API endpoints, secrets), add them in the Amplify Console under **App settings > Environment variables**.
+
+## AWS Cognito Authentication
+
+### Create a User Pool:
+- Visit the [AWS Cognito Console](https://console.aws.amazon.com/cognito/).
+- Click **Create user pool** and configure your sign-in method (e.g., email or username), password policies, and MFA (if needed).
+- Create an **App client** (ensure you do not generate a secret) and note the **User Pool ID** and **App Client ID**.
+
+### Configure the Application:
+In your `src/environments/environment.ts` file, add your Cognito settings:
+```javascript
 export const environment = {
   production: false,
   cognito: {
@@ -61,8 +141,8 @@ export const environment = {
 };
 ```
 
-2. Update your `main.ts` file to initialize AWS Amplify:
-
+### Initialize AWS Amplify with Cognito:
+In your `main.ts` file, configure Amplify using the Cognito settings:
 ```typescript
 import { Amplify } from 'aws-amplify';
 import { environment } from './environments/environment';
@@ -75,90 +155,22 @@ Amplify.configure({
   }
 });
 ```
+Once configured, your application supports user registration, sign in, and secure authentication via AWS Cognito.
 
-## Importing Users via CSV
-AWS Cognito allows importing users into a User Pool via a CSV file. Follow these steps:
+## Usage
 
-1. **Download the CSV Template:**
-   - Go to your Cognito User Pool in the AWS Console.
-   - Navigate to **Users** > **Import users** > **Create an import job**.
-   - Download the [user-import-template.csv](https://github.com/mwarnermatt-git/apollo-ng-cognito/blob/main/user-import-template.csv) file.
+### Site Selection:
+- Use the multi-select dropdown to choose one or more sales sites. The sidebar dynamically displays the selected sites.
 
-2. **Prepare the CSV File:**
-   - Ensure the header remains unchanged.
-   - Populate only the required fields: `cognito:username`, `email`, and `email_verified`.
-   - Example:
-     
-     ```csv
-     profile,address,birthdate,gender,preferred_username,updated_at,website,picture,phone_number,phone_number_verified,zoneinfo,custom:license_key,locale,email,email_verified,given_name,family_name,middle_name,name,nickname,cognito:mfa_enabled,cognito:username
-     ,,,,,,,,,,,,user1@example.com,TRUE,,,,,,FALSE,user1
-     ,,,,,,,,,,,,user2@example.com,TRUE,,,,,,FALSE,user2
-     ```
-   - Replace `<your-user-pool-id>` with the correct ID.
+### Date Selection:
+- Pick start and end dates from the date pickers.
 
-3. **Upload the CSV File:**
-   - Go to **Users** > **Import users** > **Create an import job**.
-   - Select your CSV file and submit the job.
-   - Monitor the process in Amazon CloudWatch Logs.
+### Export Sales Data:
+- Click the **Generate Sales Export** button to trigger an export. The app validates your input and makes an API call to export sales orders.
 
-[Download CSV Template](user-import-template.csv)
+### Authentication:
+- Users can sign up and log in via AWS Cognito. Once authenticated, user-specific data and attributes can be managed securely.
+- A presignup lambda has been created to restrict domains to only @rdspos.com and @pancheros.com. The lambda is called: [cognitoPreSignUpPancherosDomainRestrict](https://us-east-1.console.aws.amazon.com/lambda/home?region=us-east-1#/functions/cognitoPreSignUpPancherosDomainRestrict?newFunction=true&tab=code)
 
-## Running the Application
-After configuring Cognito, start the application:
-
-```sh
-ng serve
-```
-
-You can now sign up, sign in, and retrieve user attributes, including `license_key`.
-
-## Repomix: Generating a Shareable Code Overview
-We use [Repomix](https://github.com/yamadashy/repomix) to generate a summary of our codebase into a single `repomix-output.txt` file. This makes it easier to share and analyze with LLMs. Note that repomix is git aware and will ignore files in your .gitignore file. Consider temporarily excluding large and irrelevant files that may confuse your LLM of choice. 
-
-### How to Run Repomix
-1. Install Repomix globally:
-   ```sh
-   npm install -g repomix
-   ```
-2. Run Repomix in the project root:
-   ```sh
-   repomix
-   ```
-   This will generate `repomix-output.txt` in the repository.
-
-### Excluding Repomix from VS Code Search
-Since `repomix-output.txt` contains duplicated content from the repo, it can clutter search results in VS Code. To hide it from searches:
-1. Open **VS Code**.
-2. Go to **Settings** (`Ctrl + ,`).
-3. Search for `"files.exclude"` and click **Edit in settings.json**.
-4. Add:
-   ```json
-   "search.exclude": {
-       "**/repomix-output.txt": true
-   }
-   ```
-5. Save the file, and `repomix-output.txt` will no longer appear in searches.
-
----
-
-## Additional Features
-- User registration and login using Cognito
-- Fetching user attributes dynamically, including custom attributes
-- Integration with Apollo Angular theme for UI consistency
-
-## Future Enhancements
-- Properly implement password recovery flow
-- Implement a user service to grab user, user-role, and related site data from Hasura
-- Properly implement site hierarchies in forthcoming user service
-- Enable multi-factor authentication (MFA)
-- Add role-based access control (Hasura sites data + Angular RoleGuard library)
-- Mirror cognito users in Hasura? 
-
-## Troubleshooting
-If you encounter issues with authentication, verify:
-- Your Cognito configuration in `environment.ts`
-- That your App Client **does not have a secret**
-- The AWS CLI command syntax for adding attributes
-
-For further details, refer to the [AWS Amplify Authentication Docs](https://docs.amplify.aws/gen1/angular/build-a-backend/auth/).
-
+### Notifications:
+- Messages will display to notify you of successful exports or any errors encountered during the process.

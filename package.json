@@ -30,6 +30,7 @@
     "@fullcalendar/interaction": "^6.0.3",
     "@fullcalendar/timegrid": "^6.0.3",
     "@microsoft/signalr": "^8.0.7",
+    "angular-auth-oidc-client": "^19.0.0",
     "apollo-angular": "^7.2.1",
     "apollo-link-ws": "^1.0.20",
     "aws-amplify": "^6.12.3",

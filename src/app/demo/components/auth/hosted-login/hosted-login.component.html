@@ -1,0 +1,28 @@
+<div class="login-container">
+  <div class="login-card">
+    <h2>Sign in to your Account</h2>
+
+    <button class="google-login-btn" (click)="signInWithGoogle()">
+      <div class="google-logo">
+        <svg width="20" height="20" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill="#4285F4"
+            d="M47.532 24.53c0-1.62-.146-3.187-.42-4.69H24v9.052h13.27a11.34 11.34 0 0 1-4.925 7.45v6.2h7.95c4.66-4.3 7.31-10.62 7.31-18.012Z" />
+          <path fill="#34A853"
+            d="M24 48c6.61 0 12.15-2.19 16.2-5.94l-7.95-6.2c-2.2 1.49-4.98 2.38-8.25 2.38-6.35 0-11.74-4.29-13.67-10.07H2.16v6.3A24.002 24.002 0 0 0 24 48Z" />
+          <path fill="#FBBC05"
+            d="M10.33 27.49a14.422 14.422 0 0 1 0-9.03v-6.3H2.16A23.97 23.97 0 0 0 0 24c0 3.89.9 7.58 2.16 11.04l8.17-6.3Z" />
+          <path fill="#EA4335"
+            d="M24 9.56a13.07 13.07 0 0 1 9.21 3.62l6.89-6.89C35.71 2.23 30.47 0 24 0 14.7 0 6.49 5.35 2.16 13.16l8.17 6.3c1.93-5.78 7.32-9.9 13.67-9.9Z" />
+        </svg>
+      </div>
+      Sign in with Google
+    </button>
+    <br />
+    
+    <!-- Message Display -->
+    <div *ngIf="message" [ngClass]="{'text-black': messageType === 'info', 'text-red-500': messageType === 'error'}"
+      class="mt-2 p-2 border border-gray-300 rounded w-full text-center">
+      {{ message }}
+    </div>
+  </div>
+</div>

@@ -21,7 +21,7 @@ import { environment } from './environment';
         authority: 'https://cognito-idp.us-east-1.amazonaws.com/us-east-1_3XtCoxGfE',
         redirectUrl: window.location.origin,
         postLogoutRedirectUri: window.location.origin,        
-        clientId: '65dh7s98c0bnqmi046klgj4h3c',
+        clientId: '5a1ps41nb3n59uv611lljf8dp2',
         scope: 'email openid',
         responseType: 'code'
       },

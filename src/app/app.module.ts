@@ -7,6 +7,7 @@ import { AppLayoutModule } from './layout/app.layout.module';
 import { GraphQLModule } from './graphql.module';
 import { AuthModule } from 'angular-auth-oidc-client';
 import { environment } from './environment';
+import { en } from '@fullcalendar/core/internal-common';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { environment } from './environment';
     GraphQLModule,
     AuthModule.forRoot({
       config: {
-        authority: 'https://cognito-idp.us-east-1.amazonaws.com/us-east-1_3XtCoxGfE',
+        authority: environment.cognitoAuthority,
         redirectUrl: window.location.origin,
         postLogoutRedirectUri: window.location.origin,        
         clientId: '5a1ps41nb3n59uv611lljf8dp2',

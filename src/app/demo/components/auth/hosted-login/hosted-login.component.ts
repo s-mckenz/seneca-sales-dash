@@ -17,9 +17,23 @@ export class HostedLoginComponent {
   message: string = '';
   messageType: 'info' | 'error' | '' = '';
 
+  email: string = ''; 
+  acceptedDomains: string[] = ['rdspos.com', 'pancheros.com']; // List of allowed domains
+
   constructor(private oidcSecurityService: OidcSecurityService) {}
 
   signInWithGoogle(): void {
+    if (!this.email) {
+      this.showMessage('Please enter your email before signing in.', 'info');
+      return;
+    }
+
+    const emailDomain = this.email.split('@')[1];
+
+    if (!this.acceptedDomains.includes(emailDomain)) {
+      this.showMessage('Sign-ups are restricted to approved domains.', 'error');
+      return;
+    }
 
     this.showMessage("Redirecting to Google sign-in...", "info");
     this.oidcSecurityService.authorize();

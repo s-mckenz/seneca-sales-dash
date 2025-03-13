@@ -2,6 +2,18 @@
   <div class="login-card">
     <h2>Sign in to your Account</h2>
 
+    <!-- Email Input -->
+    <input type="email"
+    id="email"
+    name="email"
+    [(ngModel)]="email"
+    placeholder="Enter your email"
+    class="email-input"
+    autocomplete="email"
+    required />
+
+
+    <!-- Sign in Button -->
     <button class="google-login-btn" (click)="signInWithGoogle()">
       <div class="google-logo">
         <svg width="20" height="20" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -18,7 +30,6 @@
       Sign in with Google
     </button>
     <br />
-    
     <!-- Message Display -->
     <div *ngIf="message" [ngClass]="{'text-black': messageType === 'info', 'text-red-500': messageType === 'error'}"
       class="mt-2 p-2 border border-gray-300 rounded w-full text-center">

@@ -118,16 +118,17 @@ export class HomeComponent implements OnInit, OnDestroy {
       // Otherwise, pass the selected site IDs (and no clientId)
       requestBody = {
         siteIds: this.selectedSiteIds,
-        clientId: null,
+        clientId: clientId, //TODO: Remove this once the API is updated
         startDate: this.startDate,
         endDate: this.endDate
       };
     }
-
+    
+    // Log the request details
+    console.log("Export Request Body:", requestBody);
     this.showMessage("Orders are being exported. Please check your email for updates.", "info");
     
     const url = "https://bmdpppgagg.us-east-1.awsapprunner.com/exportRPOSOrders";
-    
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
@@ -136,14 +137,16 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.http.post(url, requestBody, { headers })
       .subscribe({
         next: (response) => {
-          this.showMessage("Export success:", "info");
+          console.log("Export API Response:", response);
+          this.showMessage("Export success", "info");
         },
         error: (error) => {
-          this.showMessage("Export error:" + error, "error");
-          //this.showMessage("Error exporting orders.", "error");
+          console.error("Export API Error:", error);
+          this.showMessage("Export error: " + error, "error");
         }
       });
   }
+  
 
   presentDashboard() {
     const elem = this.dashboard.nativeElement;

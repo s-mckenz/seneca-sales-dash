@@ -17,6 +17,7 @@ export const environment = {
             "https://pancherossales.s4hospitality.net/",
           ],
           domain: 'us-east-10whypnnrn.auth.us-east-1.amazoncognito.com',
+          
           scope: ['openid', 'email', 'profile', 'aws.cognito.signin.user.admin'], 
           clientId: '5a1ps41nb3n59uv611lljf8dp2',
           responseType: 'code', 

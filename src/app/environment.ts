@@ -3,14 +3,14 @@ export const environment = {
   aws: {
     Auth: {
       Cognito: {
-        userPoolId: 'us-east-1_0WHyPNNRN',
-        userPoolClientId: '4u9bg8rub6ol6fvq4gfpdeucur',
+        userPoolId: 'us-east-1_9DO881wuX',
+        userPoolClientId: '34ibbsvkc014g5q7r5nc3pm8p5',
       },
       loginWith: {
         oauth: {
           redirectSignIn: [
-            "http://localhost:4200/",
-            "https://senecapayroll.s4hospitality.net/",
+            "http://localhost:4200/dashboard",
+            "https://senecapayroll.s4hospitality.net/dashboard",
           ],
           redirectSignOut: [
             "http://localhost:4200/",
@@ -19,7 +19,7 @@ export const environment = {
           domain: 'us-east-10whypnnrn.auth.us-east-1.amazoncognito.com',
           
           scope: ['openid', 'email', 'profile', 'aws.cognito.signin.user.admin'], 
-          clientId: '4u9bg8rub6ol6fvq4gfpdeucur',
+          clientId: '34ibbsvkc014g5q7r5nc3pm8p5',
           responseType: 'code', 
         },
       },

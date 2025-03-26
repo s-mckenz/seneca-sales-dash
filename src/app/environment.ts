@@ -10,11 +10,11 @@ export const environment = {
         oauth: {
           redirectSignIn: [
             "http://localhost:4200/",
-            "https://pancherossales.s4hospitality.net/",
+            "https://senecaPayroll.s4hospitality.net/",
           ],
           redirectSignOut: [
             "http://localhost:4200/",
-            "https://pancherossales.s4hospitality.net/",
+            "https://senecaPayroll.s4hospitality.net/",
           ],
           domain: 'us-east-10whypnnrn.auth.us-east-1.amazoncognito.com',
           

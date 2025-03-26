@@ -63,8 +63,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   async loadSiteOptions() {
     try {
       const query = gql`
-        query fetchPancherosSites {
-          rds_cloud_Clients(where: {id: {_eq: 166}}) {
+        query fetchSenecaSites {
+          rds_cloud_Clients(where: {id: {_eq: 199}}) {
             Sites(where: {statusId: {_eq: 2}}, order_by: {name: asc}) {
               id
               name
@@ -99,7 +99,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
     
     // Hard-coded client ID TODO: Make this dynamic using a user service
-    const clientId = 166;
+    const clientId = 199;
     
     // Determine if all sites have been selected
     const allSitesSelected = this.siteOptions.length === this.selectedSiteIds.length;
@@ -128,13 +128,16 @@ export class HomeComponent implements OnInit, OnDestroy {
     console.log("Export Request Body:", requestBody);
     this.showMessage("Orders are being exported. Please check your email for updates.", "info");
     
-    const url = "https://bmdpppgagg.us-east-1.awsapprunner.com/exportRPOSOrders";
-    const headers = new HttpHeaders({
+    const url = this.selectedSiteIds.length > 0
+    ? "https://bmdpppgagg.us-east-1.awsapprunner.com/exportAccountDetailForSite"
+    : "https://bmdpppgagg.us-east-1.awsapprunner.com/exportHouseAccountDetail";
+  const body = this.selectedSiteIds ? { clientId, siteID: this.selectedSiteIds, startDate: this.startDate, endDate: this.endDate } : { clientId, siteID: null, startDate: this.startDate, endDate: this.endDate };
+      const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
     
     // POST the export request using HttpClient
-    this.http.post(url, requestBody, { headers })
+    this.http.post(url, JSON.stringify(body), { headers })
       .subscribe({
         next: (response) => {
           console.log("Export API Response:", response);

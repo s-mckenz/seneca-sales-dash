@@ -18,7 +18,7 @@ export class HostedLoginComponent {
   messageType: 'info' | 'error' | '' = '';
 
   email: string = ''; 
-  acceptedDomains: string[] = ['rdspos.com', 'pancheros.com']; // List of allowed domains
+  acceptedDomains: string[] = ['rdspos.com', 'seneca.com']; // List of allowed domains
 
   constructor(private oidcSecurityService: OidcSecurityService) {}
 

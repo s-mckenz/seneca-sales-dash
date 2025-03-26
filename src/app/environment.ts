@@ -4,7 +4,7 @@ export const environment = {
     Auth: {
       Cognito: {
         userPoolId: 'us-east-1_0WHyPNNRN',
-        userPoolClientId: 'k197r02g8dn54b8mhtfjlru1f',
+        userPoolClientId: '4u9bg8rub6ol6fvq4gfpdeucur',
       },
       loginWith: {
         oauth: {
@@ -19,7 +19,7 @@ export const environment = {
           domain: 'us-east-10whypnnrn.auth.us-east-1.amazoncognito.com',
           
           scope: ['openid', 'email', 'profile', 'aws.cognito.signin.user.admin'], 
-          clientId: 'k197r02g8dn54b8mhtfjlru1f',
+          clientId: '4u9bg8rub6ol6fvq4gfpdeucur',
           responseType: 'code', 
         },
       },

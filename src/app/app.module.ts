@@ -22,7 +22,7 @@ import { en } from '@fullcalendar/core/internal-common';
         authority: environment.cognitoAuthority,
         redirectUrl: window.location.origin,
         postLogoutRedirectUri: window.location.origin,        
-        clientId: 'k197r02g8dn54b8mhtfjlru1f',
+        clientId: '4u9bg8rub6ol6fvq4gfpdeucur',
         scope: 'email openid',
         responseType: 'code'
       },

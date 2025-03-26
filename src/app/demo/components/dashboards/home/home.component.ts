@@ -127,14 +127,51 @@ export class HomeComponent implements OnInit, OnDestroy {
     // Log the request details
     console.log("Export Request Body:", requestBody);
     this.showMessage("Orders are being exported. Please check your email for updates.", "info");
-    
-    const url = this.selectedSiteIds.length > 0
-    ? "https://bmdpppgagg.us-east-1.awsapprunner.com/exportAccountDetailForSite"
-    : "https://bmdpppgagg.us-east-1.awsapprunner.com/exportHouseAccountDetail";
-  const body = this.selectedSiteIds ? { clientId, siteID: this.selectedSiteIds, startDate: this.startDate, endDate: this.endDate } : { clientId, siteID: null, startDate: this.startDate, endDate: this.endDate };
-      const headers = new HttpHeaders({
+    const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
+    let url = '';
+    let body = {};
+    if (this.selectedSiteIds.length > 0) {
+      this.selectedSiteIds.forEach(siteId => {
+         url = "https://bmdpppgagg.us-east-1.awsapprunner.com/exportAccountDetailForSite";
+        body = {
+          clientId: clientId,
+          siteId: siteId,
+          startDate: this.startDate,
+          endDate: this.endDate
+        };
+    
+        this.http.post(url, body, { headers }).subscribe(
+          response => {
+            // Handle response per site
+            console.log(`Success for site ${siteId}`, response);
+          },
+          error => {
+            // Handle error per site
+            console.error(`Error for site ${siteId}`, error);
+          }
+        );
+      });
+    } else {
+      url = "https://bmdpppgagg.us-east-1.awsapprunner.com/exportHouseAccountDetail";
+      body = {
+        clientId: clientId,
+        siteID: null,
+        startDate: this.startDate,
+        endDate: this.endDate
+      };
+    
+      this.http.post(url, body, { headers }).subscribe(
+        response => {
+          console.log("Success for all-house export", response);
+        },
+        error => {
+          console.error("Error for all-house export", error);
+        }
+      );
+    }
+      
     
     // POST the export request using HttpClient
     this.http.post(url, JSON.stringify(body), { headers })

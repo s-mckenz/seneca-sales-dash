@@ -157,7 +157,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       url = "https://bmdpppgagg.us-east-1.awsapprunner.com/exportHouseAccountDetail";
       body = {
         clientId: clientId,
-        siteID: null,
+        siteId: null,
         startDate: this.startDate,
         endDate: this.endDate
       };

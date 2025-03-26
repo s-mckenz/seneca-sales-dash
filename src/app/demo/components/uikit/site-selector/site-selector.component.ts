@@ -30,7 +30,7 @@ export class SiteSelectorComponent implements OnInit {
     query GetSites {
   rds_cloud_Sites(
     where: { 
-      clientId: { _eq: 109 }, 
+      clientId: { _eq: 199 }, 
       statusId: { _eq: 2 } 
     },
     order_by: { name: asc }  

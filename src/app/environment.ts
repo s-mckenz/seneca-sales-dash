@@ -28,7 +28,7 @@ export const environment = {
   graphqlWsUri: 'wss://rds-cloud-staging.hasura.app/v1/graphql',
   graphqlUri: 'https://rds-cloud-staging.hasura.app/v1/graphql',
   authorizationToken: 'tAOkaxydbwpbuaqYnmApQl6d6WDxHxFKehW1RNx3ZTcUCMfsFxb7HeJ46G1lKY2b',
-  googleClientId:'268557945384-ps1mjef11ojrj6dsvl4nhbnvdkjem9cs.apps.googleusercontent.com',
+  googleClientId:'268557945384-m7i0ilpua0bo272penefghmphvlrsk3s.apps.googleusercontent.com',
   cognitoUrl: 'https://9do881wux.auth.us-east-1.amazoncognito.com', // Fixed
   cognitoAuthority: 'https://cognito-idp.us-east-1.amazonaws.com/us-east-1_9DO881wuX', // Fixed
 };
